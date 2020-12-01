@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :admins
   use_doorkeeper
   devise_for :users
   devise_scope :user do
     root to: 'doorkeeper/applications#index'
+  end
+
+  namespace :secure do
+    resources :admins
   end
 
   namespace :api do
